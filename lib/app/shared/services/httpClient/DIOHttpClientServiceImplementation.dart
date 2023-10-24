@@ -11,7 +11,7 @@ import 'IHttpClientServiceInterface.dart';
 class DIOHttpClientServiceImplementation
     implements IHttpClientServiceInterface {
   @override
-  String get baseUrl => 'http://192.168.18.10:8032';
+  String get baseUrl => 'http://192.168.18.10:8052';
 
   Dio get httpClient => Dio(
         BaseOptions(

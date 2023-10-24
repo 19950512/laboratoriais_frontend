@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 // ignore: must_be_immutable
 class AppBarComponent extends StatelessWidget implements PreferredSizeWidget {
@@ -20,8 +21,8 @@ class AppBarComponent extends StatelessWidget implements PreferredSizeWidget {
       title: Text(
         title,
       ),
-      /* leading: IconButton(
-        icon: const Icon(Icons.arrow_back, color: Colors.white),
+      /*leading: IconButton(
+        icon: const Icon(Icons.arrow_back),
         onPressed: () async {
           /* if (onPressed != null) {
             await onPressed!();
@@ -29,7 +30,7 @@ class AppBarComponent extends StatelessWidget implements PreferredSizeWidget {
 
           Modular.to.pop();
         },
-      ), */
+      ),*/
       actions: actions,
     );
   }

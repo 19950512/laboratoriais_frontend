@@ -18,6 +18,7 @@ class AuthRepositoryImplementation implements IAuthRepositoryInterface {
   Future<Either<String, UserModel>> login(String email, String password) async {
     final authStore = Modular.get<AuthStore>();
     authStore.setUser(UserModel(
+      id: '-',
       email: email,
       name: 'User Name',
       foto: 'https://sis.gestorimob.com.br/jnh/app/user.png',
@@ -41,6 +42,7 @@ class AuthRepositoryImplementation implements IAuthRepositoryInterface {
         }
 
         return Right(UserModel(
+          id: '-',
           email: email,
           name: 'User Name',
           foto: 'https://sis.gestorimob.com.br/jnh/app/user.png',
@@ -51,4 +53,36 @@ class AuthRepositoryImplementation implements IAuthRepositoryInterface {
 
   @override
   void logout() {}
+
+  @override
+  Future<Either<String, UserModel>> cadastrar(
+    String email,
+    String password,
+    String name,
+  ) async {
+    final response = await _httpClientService.post(
+      endpoint: '/auth/business',
+      body: {
+        'name': name,
+        'email': email,
+        'password': password,
+      },
+    );
+
+    return response.fold(
+      (l) {
+        return Left(l.toString());
+      },
+      (r) {
+        UserModel userModel = UserModel(
+          id: r.data['id'],
+          email: email,
+          name: name,
+          foto: 'https://sis.gestorimob.com.br/jnh/app/user.png',
+        );
+
+        return Right(userModel);
+      },
+    );
+  }
 }

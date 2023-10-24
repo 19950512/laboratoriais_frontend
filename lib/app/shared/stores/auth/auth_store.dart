@@ -15,6 +15,7 @@ class AuthStore extends Store<int> {
   String accessToken = '';
 
   UserModel user = UserModel(
+    id: '-',
     email: 'user@email.com',
     name: 'User Name',
     foto: 'https://sis.gestorimob.com.br/jnh/app/user.png',
@@ -40,6 +41,15 @@ class AuthStore extends Store<int> {
   Future<Either<String, UserModel>> logar(
       {required String email, required String password}) async {
     final resposta = _authRepository.login(email, password);
+
+    return resposta;
+  }
+
+  Future<Either<String, UserModel>> cadastrar(
+      {required String email,
+      required String password,
+      required String name}) async {
+    final resposta = _authRepository.cadastrar(email, password, name);
 
     return resposta;
   }

@@ -77,50 +77,85 @@ class DrawerMenuComponent extends StatelessWidget {
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height - tamanhoDraw,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                ListTile(
-                  leading: const Icon(
-                    Icons.home,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  ListTile(
+                    leading: const Icon(
+                      Icons.home_outlined,
+                    ),
+                    title: const Text("Início"),
+                    subtitle: const Text("boas vindas"),
+                    onTap: () => Modular.to.pushNamed('/sistema/'),
                   ),
-                  title: const Text("Início"),
-                  subtitle: const Text("boas vindas"),
-                  onTap: () => Modular.to.pushNamed('/sistema/'),
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.people,
+                  ListTile(
+                    leading: const Icon(
+                      Icons.people_outline,
+                    ),
+                    title: const Text("Clientes"),
+                    subtitle: const Text("Gerenciar clientes"),
+                    onTap: () => Modular.to.pushNamed('/sistema/clientes'),
                   ),
-                  title: const Text("Clientes"),
-                  subtitle: const Text("Gerenciar clientes"),
-                  onTap: () => Modular.to.pushNamed('/sistema/clientes'),
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.attach_money,
+                  ListTile(
+                    leading: const Icon(
+                      Icons.production_quantity_limits_rounded,
+                    ),
+                    title: const Text("Produtos"),
+                    subtitle: const Text("Gerenciar Produtos"),
+                    onTap: () => Modular.to.pushNamed('/sistema/Produtos'),
                   ),
-                  title: const Text("Contas Bancarias"),
-                  subtitle: const Text("Gerenciar Contas Bancarias"),
-                  onTap: () => Modular.to.pushNamed('/sistema/contasbancarias'),
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.settings,
+                  ListTile(
+                    leading: const Icon(
+                      Icons.home_repair_service_outlined,
+                    ),
+                    title: const Text("Ordem de Serviço"),
+                    subtitle: const Text("Gerenciar Ordem de Serviço"),
+                    onTap: () => Modular.to.pushNamed('/ordem_de_servico/'),
                   ),
-                  title: const Text("Configurações"),
-                  subtitle: const Text("Configurações do sistema"),
-                  onTap: () => Modular.to.pushNamed('/configuracoes/'),
-                ),
-                ListTile(
-                  leading: const Icon(
-                    Icons.exit_to_app,
+                  ListTile(
+                    leading: const Icon(
+                      Icons.attach_money_outlined,
+                    ),
+                    title: const Text("Financeiro"),
+                    subtitle: const Text("Gerenciar Financeiro"),
+                    onTap: () => Modular.to.pushNamed('/financeiro/'),
                   ),
-                  title: const Text("sair"),
-                  subtitle: const Text("fechar o software"),
-                  onTap: () => SystemNavigator.pop(),
-                ),
-              ],
+                  ListTile(
+                    leading: const Icon(
+                      Icons.attach_money,
+                    ),
+                    title: const Text("Contas Bancarias"),
+                    subtitle: const Text("Gerenciar Contas Bancarias"),
+                    onTap: () =>
+                        Modular.to.pushNamed('/sistema/contasbancarias'),
+                  ),
+                  ListTile(
+                    leading: const Icon(
+                      Icons.business,
+                    ),
+                    title: const Text("Minha Empresa"),
+                    subtitle: const Text("Informações da empresa"),
+                    onTap: () => Modular.to.pushNamed('/empresa/'),
+                  ),
+                  ListTile(
+                    leading: const Icon(
+                      Icons.settings_outlined,
+                    ),
+                    title: const Text("Configurações"),
+                    subtitle: const Text("Configurações do sistema"),
+                    onTap: () => Modular.to.pushNamed('/configuracoes/'),
+                  ),
+                  ListTile(
+                    leading: const Icon(
+                      Icons.exit_to_app,
+                    ),
+                    title: const Text("sair"),
+                    subtitle: const Text("fechar o software"),
+                    onTap: () => SystemNavigator.pop(),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
