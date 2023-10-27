@@ -20,11 +20,13 @@ class EmpresaRepositoryImplementation implements EmpresaRepository {
 
     return resposta.fold(
       (l) => Left(l),
-      (r) => Right(
-        r.data
-            .map<ColaboradorModel>((e) => ColaboradorModel.fromJson(e))
-            .toList(),
-      ),
+      (r) {
+        return Right(
+          r.data
+              .map<ColaboradorModel>((e) => ColaboradorModel.fromJson(e))
+              .toList(),
+        );
+      },
     );
   }
 }

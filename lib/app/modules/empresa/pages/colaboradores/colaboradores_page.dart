@@ -33,13 +33,13 @@ class _ColaboradoresPageState extends State<ColaboradoresPage> {
   }
 
   Widget _buildSuccess(state) {
-    if (state.length == 0) {
+    if (empresaStore.colaboradores.isEmpty) {
       return const Center(child: Text('Nenhum colaborador foi encontrado.'));
     }
     return ListView.builder(
-      itemCount: state.length,
+      itemCount: empresaStore.colaboradores.length,
       itemBuilder: (context, indexContexto) {
-        ColaboradorModel data = state[indexContexto];
+        ColaboradorModel data = empresaStore.colaboradores[indexContexto];
         return Card(
           child: Column(
             children: [
@@ -54,7 +54,7 @@ class _ColaboradoresPageState extends State<ColaboradoresPage> {
                     Text(data.email),
                   ],
                 ),
-                trailing: IconButton(
+                /*trailing: IconButton(
                   onPressed: () {
                     showDialog(
                       context: context,
@@ -84,9 +84,9 @@ class _ColaboradoresPageState extends State<ColaboradoresPage> {
                     );
                   },
                   icon: const Icon(Icons.delete),
-                ),
+                ),*/
                 onTap: () => Modular.to.pushNamed(
-                  '/sistema/clientes/detalhes',
+                  '/empresa/colaboradores/detalhes',
                   arguments: data,
                 ),
               ),
