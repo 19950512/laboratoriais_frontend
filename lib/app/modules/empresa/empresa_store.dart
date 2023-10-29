@@ -29,4 +29,19 @@ class EmpresaStore extends Store<int> {
     }
     setLoading(false);
   }
+
+  Future<String> addColaborador(ColaboradorModel colaboradorModel) async {
+    final result = await _repository.addColaborador(colaboradorModel);
+    result.fold(
+      (l) => {},
+      (novoColaborador) {
+        colaboradores.add(novoColaborador);
+        update((Random(1)).nextInt(9999));
+      },
+    );
+
+    return result.fold((l) {
+      throw Exception(l);
+    }, (r) => 'Colaborador adicionado com sucesso');
+  }
 }

@@ -105,7 +105,7 @@ class _ColaboradoresPageState extends State<ColaboradoresPage> {
       actions: [
         IconButton(
           onPressed: () {
-            Modular.to.pushNamed('/sistema/clientes/novo');
+            Modular.to.pushNamed('/empresa/colaboradores/novo');
           },
           icon: const Icon(Icons.add),
         ),

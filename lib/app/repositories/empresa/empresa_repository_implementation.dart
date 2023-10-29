@@ -29,4 +29,21 @@ class EmpresaRepositoryImplementation implements EmpresaRepository {
       },
     );
   }
+
+  @override
+  Future<Either<String, ColaboradorModel>> addColaborador(
+      ColaboradorModel colaboradorModel) async {
+    final resposta = await _httpClientService.post(
+      endpoint: '/business/colaboradores',
+      body: {
+        "name": colaboradorModel.nome,
+        "email": colaboradorModel.email,
+      },
+    );
+
+    return resposta.fold(
+      (l) => Left(l),
+      (r) => Right(colaboradorModel),
+    );
+  }
 }
