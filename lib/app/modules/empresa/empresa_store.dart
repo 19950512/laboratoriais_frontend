@@ -21,7 +21,7 @@ class EmpresaStore extends Store<int> {
         (l) => setError(Exception(l)),
         (r) {
           colaboradores = r;
-          update((Random(1)).nextInt(9999));
+          update((Random()).nextInt(99999));
         },
       );
     } on Exception catch (e) {
@@ -35,8 +35,9 @@ class EmpresaStore extends Store<int> {
     result.fold(
       (l) => {},
       (novoColaborador) {
+        print(novoColaborador);
         colaboradores.add(novoColaborador);
-        update((Random(1)).nextInt(9999));
+        update((Random()).nextInt(99999));
       },
     );
 

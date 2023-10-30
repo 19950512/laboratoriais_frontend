@@ -87,7 +87,7 @@ class _ColaboradoresNovoPageState extends State<ColaboradoresNovoPage> {
                         );
 
                         SnackBarComponent().showSuccess(context, resposta);
-                        Modular.to.pushNamed('/sistema/clientes');
+                        Modular.to.pushNamed('/empresa/colaboradores');
                       } catch (e) {
                         SnackBarComponent().showError(context, e.toString());
                       }

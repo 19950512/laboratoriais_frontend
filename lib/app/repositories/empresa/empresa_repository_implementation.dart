@@ -36,7 +36,7 @@ class EmpresaRepositoryImplementation implements EmpresaRepository {
     final resposta = await _httpClientService.post(
       endpoint: '/business/colaboradores',
       body: {
-        "name": colaboradorModel.nome,
+        "nome": colaboradorModel.nome,
         "email": colaboradorModel.email,
       },
     );
