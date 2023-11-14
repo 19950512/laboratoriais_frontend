@@ -1,14 +1,12 @@
-// ignore_for_file: unused_field
-
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_triple/flutter_triple.dart';
 import 'package:laboratoriais_frontend/app/models/ContaBancariaModel.dart';
+import 'package:laboratoriais_frontend/app/modules/contasbancarias/contasbancarias_store.dart';
 
-import '../../../../designSystem/layout/layoutComponent.dart';
-import '../../../../models/ClientesModel.dart';
-import '../../../../shared/stores/auth/auth_store.dart';
-import 'contasbancarias_store.dart';
+import '../../../designSystem/layout/layoutComponent.dart';
+import '../../../designSystem/switchComponent.dart';
+import '../../../shared/stores/app/app_store.dart';
 
 class ContasBancariasPage extends StatefulWidget {
   const ContasBancariasPage({super.key});
@@ -18,15 +16,14 @@ class ContasBancariasPage extends StatefulWidget {
 }
 
 class _ContasBancariasPageState extends State<ContasBancariasPage> {
+  late final AppStore _appStore;
   late final ContasBancariasStore contasBancariasStore;
-  late AuthStore _authStore;
 
   @override
   void initState() {
     super.initState();
 
-    _authStore = Modular.get<AuthStore>();
-
+    _appStore = Modular.get<AppStore>();
     contasBancariasStore = Modular.get<ContasBancariasStore>();
   }
 
@@ -41,15 +38,14 @@ class _ContasBancariasPageState extends State<ContasBancariasPage> {
   }
 
   Widget _buildSuccess(state) {
-    if (state.length == 0) {
-      return const Center(
-          child: Text('Nenhuma conta bancária foi encontrada.'));
+    if (contasBancariasStore.contasbancarias.isEmpty) {
+      return const Center(child: Text('Nenhum colaborador foi encontrado.'));
     }
-
     return ListView.builder(
-      itemCount: state.length,
+      itemCount: contasBancariasStore.contasbancarias.length,
       itemBuilder: (context, indexContexto) {
-        ClientesModel data = state[indexContexto];
+        ContaBancariaModel data =
+            contasBancariasStore.contasbancarias[indexContexto];
         return Card(
           child: Column(
             children: [
@@ -61,43 +57,17 @@ class _ContasBancariasPageState extends State<ContasBancariasPage> {
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(data.email),
-                    Text(data.documento),
+                    Text('Banco: ${data.banco}'),
+                    Text('Agência: ${data.agencia}'),
                   ],
                 ),
-                trailing: IconButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: const Text('Excluir'),
-                          content: const Text(
-                              'Tem certeza que deseja excluir esta conta bancária?'),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Modular.to.pop();
-                              },
-                              child: const Text('Cancelar'),
-                            ),
-                            TextButton(
-                              onPressed: () async {
-                                //await contasBancariasStore.deleteCliente(data);
-                                Modular.to.pop();
-                                contasBancariasStore.getContasBancarias();
-                              },
-                              child: const Text('Excluir'),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                  icon: const Icon(Icons.delete),
+                trailing: Column(
+                  children: [
+                    Text('Saldo: ${data.saldo}'),
+                  ],
                 ),
                 onTap: () => Modular.to.pushNamed(
-                  '/sistema/contasbancarias/detalhes',
+                  './contabancaria/detalhes',
                   arguments: data,
                 ),
               ),
@@ -112,10 +82,11 @@ class _ContasBancariasPageState extends State<ContasBancariasPage> {
   Widget build(BuildContext context) {
     return LayoutComponent(
       title: 'Contas Bancárias',
+      esconderDrawer: true,
       actions: [
         IconButton(
           onPressed: () {
-            Modular.to.pushNamed('/sistema/contasbancarias/novo');
+            Modular.to.pushNamed('./novo');
           },
           icon: const Icon(Icons.add),
         ),
@@ -126,7 +97,7 @@ class _ContasBancariasPageState extends State<ContasBancariasPage> {
       ],
       body: RefreshIndicator(
         onRefresh: contasBancariasStore.getContasBancarias,
-        child: ScopedBuilder<ContasBancariasStore, List<ContaBancariaModel>>(
+        child: ScopedBuilder<ContasBancariasStore, int>(
           store: contasBancariasStore,
           onError: (context, erro) => _buildError(erro!),
           onLoading: (context) => _buildLoading(),

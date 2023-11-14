@@ -127,8 +127,7 @@ class DrawerMenuComponent extends StatelessWidget {
                     ),
                     title: const Text("Contas Bancarias"),
                     subtitle: const Text("Gerenciar Contas Bancarias"),
-                    onTap: () =>
-                        Modular.to.pushNamed('/sistema/contasbancarias'),
+                    onTap: () => Modular.to.pushNamed('/contasbancarias/'),
                   ),
                   ListTile(
                     leading: const Icon(

@@ -1,5 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:laboratoriais_frontend/app/models/ContaBancariaModel.dart';
 import 'package:laboratoriais_frontend/app/modules/configuracoes/configuracoes_module.dart';
+import 'package:laboratoriais_frontend/app/modules/contasbancarias/contasbancarias_module.dart';
 import 'package:laboratoriais_frontend/app/modules/empresa/empresa_store.dart';
 import 'package:laboratoriais_frontend/app/modules/sistema/sistema_module.dart';
 
@@ -27,6 +29,7 @@ class AppModule extends Module {
     );
     r.module('/auth', module: AuthModule());
     r.module('/sistema', module: SistemaModule());
+    r.module('/contasbancarias', module: ContasBancariasModule());
     r.module('/empresa', module: EmpresaModule());
     r.module('/configuracoes', module: ConfiguracoesModule());
   }

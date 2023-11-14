@@ -29,7 +29,7 @@ class _AppWidgetState extends State<AppWidget> {
       title: 'Laboratoriais',
       debugShowCheckedModeBanner: false,
       routerConfig: Modular.routerConfig,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       theme: ThemeData(
         useMaterial3: true,
         primaryColor: Colors.blue,

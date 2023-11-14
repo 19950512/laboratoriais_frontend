@@ -2,10 +2,10 @@ import '../../models/ContaBancariaModel.dart';
 import '../../shared/either.dart';
 import '../../shared/services/httpClient/DIOHttpClientServiceImplementation.dart';
 import '../../shared/services/httpClient/IHttpClientServiceInterface.dart';
-import 'contas_bancarias_repository.dart';
+import 'contasbancarias_repository.dart';
 
 class ContasBancariasRepositoryImplementation
-    implements contasBancariasRepository {
+    implements ContasBancariasRepository {
   late final IHttpClientServiceInterface _httpClientService;
 
   ContasBancariasRepositoryImplementation() {
